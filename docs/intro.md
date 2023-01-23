@@ -11,9 +11,9 @@ ParticleLib 是一个基于 BukkitAPI 编写的**粒子特效**程序库，只�
 若需要兼容其他服务端, 可移步至 [TabooLib](https://github.com/TabooLib/taboolib) 的 [module-effect](https://github.com/TabooLib/taboolib/tree/master/module/module-effect) 两者都是 我(602723113/Zoyn/莫老) 所编写的内容, 但 TabooLib 更新会慢于 ParticleLib
 
 # 开始使用
-- [安装 与 API导入]()
-- [创建你的第一个粒子特效：圆]()
-- [如何做到持续的显示]()
+- [安装 与 API导入](/)
+- [创建你的第一个粒子特效：圆](/)
+- [如何做到持续的显示](/)
 
 # 粒子特效对象
 在 ParticleLib 当中所有的特效都是通过 new 直接构造, 具体构造方法读者可以自行至源码处查阅, 注释已经写得比较清晰
