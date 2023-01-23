@@ -57,9 +57,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'ParticleLib',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'ParticleLib 的主页',
           src: 'img/logo.svg',
         },
         items: [
@@ -67,11 +67,11 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: '指南',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/blog', label: '神识!', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/602723113/ParticleLib',
             label: 'GitHub',
             position: 'right',
           },
@@ -81,46 +81,38 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Docs',
+            title: '文档',
             items: [
               {
-                label: 'Tutorial',
+                label: '指南',
                 to: '/docs/intro',
               },
             ],
           },
           {
-            title: 'Community',
+            title: '社区',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'QQ',
+                href: 'https://jq.qq.com/?_wv=1027&k=COwCwxSW',
               },
             ],
           },
           {
-            title: 'More',
+            title: '更多',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: '博客',
+                to: 'https://blog.zoyn.top/',
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/602723113/ParticleLib',
+                href: 'https://github.com/602723113',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `MIT Licensed | Copyright © 2020-2023 Zoyn Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
