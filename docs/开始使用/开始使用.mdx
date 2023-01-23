@@ -2,17 +2,19 @@
 sidebar_position: 1
 ---
 
-# 安装 与 API导入
+# 开始使用
 
-## 一、安装 ParticleLib
+## 安装 与 API导入
+
+### 一、安装 ParticleLib
 
 你需要通过 [releases](https://github.com/602723113/ParticleLib/releases) 页面, 下载最新的 ParticleLib 并将其 放入 ./plugins 文件夹即可
 
-## 二、依赖 ParticleLib
+### 二、依赖 ParticleLib
 
 ParticleLib 目前使用 JitPack 进行分发, mavenCentral 正在申请当中
 
-### Maven
+#### Maven
 Step 1. Add the JitPack repository to your build file
 ```xml
 <repositories>
@@ -27,10 +29,10 @@ Step 2. Add the dependency
 <dependency>
     <groupId>com.github.602723113</groupId>
     <artifactId>ParticleLib</artifactId>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
 </dependency>
 ```
-### Gradle
+#### Gradle
 Step 1. Add the JitPack repository to your build file
 Add it in your root build.gradle at the end of repositories:
 ```gradle
@@ -43,10 +45,10 @@ allprojects {
 Step 2. Add the dependency
 ```gradle
 dependencies {
-    implementation 'com.github.602723113:ParticleLib:1.3.0'
+    implementation 'com.github.602723113:ParticleLib:1.4.0'
 }
 ```
-# 创建你的第一个粒子特效：圆
+## 创建你的第一个粒子特效：圆
 ParticleLib 会将所有写好的粒子特效放入名为 pobject 的 [程序包](https://github.com/602723113/ParticleLib/tree/master/src/main/java/top/zoyn/particlelib/pobject) 当中。
 所有的特效都是基于 [ParticleObject](https://github.com/602723113/ParticleLib/blob/master/src/main/java/top/zoyn/particlelib/pobject/ParticleObject.java)  这个**抽象类**进行的构造
 
@@ -73,7 +75,8 @@ circle.show();
 
 默认参数为: 半径为 1, 粒子点间隔为 1
 :::
-# 如何做到持续的显示
+
+## 如何做到持续的显示
 
 在上方的代码当中你会发现 粒子特效 仅仅出现了一次就消失了, 而**无法进行持续的出现**, 那么这个时候我们可以调用以下两个方法
 
