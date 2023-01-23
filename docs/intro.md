@@ -1,9 +1,8 @@
 ---
-id: Intro
+id: intro
 title: Intro
 sidebar_position: 1
 tags:
-- Demo
 - Getting started
 ---
 Welcome to the ParticleLib wiki!
