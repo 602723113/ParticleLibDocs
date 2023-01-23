@@ -1,0 +1,24 @@
+---
+sidebar_position: 3
+---
+# 如何做到持续的显示
+
+在上方的代码当中你会发现 粒子特效 仅仅出现了一次就消失了, 而**无法进行持续的出现**, 那么这个时候我们可以调用以下两个方法
+
+:::tip
+我们之前说过所有的 粒子特效类 都继承了 ParticleObject 这一抽象类, 因此可以直接调用下面的方法
+:::
+
+- ParticleObject#alwaysShow
+> 可以使得当前的特效一直进行显示, 只不过 ParticleLib 会占用主线程来执行计算
+- ParticleObject#alwaysShowAsync
+> 跟 alwaysShow 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
+
+所以上面的代码我们可以改成
+```java
+Player player = ...;
+Circle circle = new Circle(player.getLocation());
+circle.alwaysShowAsync();
+```
+
+此时你会发现 圆 就会一直显示在地图上

@@ -1,0 +1,47 @@
+---
+sidebar_position: 1
+---
+# 安装 与 API导入
+
+## 一、安装 ParticleLib
+
+你需要通过 [releases](https://github.com/602723113/ParticleLib/releases) 页面, 下载最新的 ParticleLib 并将其 放入 ./plugins 文件夹即可
+
+## 二、依赖 ParticleLib
+
+ParticleLib 目前使用 JitPack 进行分发, mavenCentral 正在申请当中
+
+#### Maven
+Step 1. Add the JitPack repository to your build file
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://www.jitpack.io</url>
+    </repository>
+</repositories>
+```
+Step 2. Add the dependency
+```xml
+<dependency>
+    <groupId>com.github.602723113</groupId>
+    <artifactId>ParticleLib</artifactId>
+    <version>1.4.0</version>
+</dependency>
+```
+### Gradle
+Step 1. Add the JitPack repository to your build file
+Add it in your root build.gradle at the end of repositories:
+```gradle
+allprojects {
+    repositories {
+        maven { url 'https://www.jitpack.io' }
+    }
+}
+```
+Step 2. Add the dependency
+```gradle
+dependencies {
+    implementation 'com.github.602723113:ParticleLib:1.4.0'
+}
+```
