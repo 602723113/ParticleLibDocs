@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: 射线
 tags:
 - 基础内容
@@ -7,11 +7,11 @@ tags:
 # 射线
 
 :::tip 提示
-该粒子特效已实现 Playable 接口, 支持按 period/tick 进行播放
-可以调用以下三个方法
-- play()
-- alwaysPlay()
-- alwaysPlayAsync()
+该粒子特效已实现 Playable 接口, 支持按 period/tick 进行播放 可以调用以下三个方法
+
+- play() 若特效类已经实现 Playable 接口, 则会出现该方法
+- alwaysPlay() 可以使得当前的特效一直进行步进播放, 只不过 ParticleLib 会占用主线程来执行计算
+- alwaysPlayAsync() 跟 alwaysPlay 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
 :::
 
 射线最初的设计为, 用**给定的原点与方向**即可构筑出一条射线, 而现可以使用射线捕获所击中的实体
@@ -45,6 +45,6 @@ Ray ray = new Ray(launchLocation, player.getLocation().getDirection(), 10, 0.02,
 
 其中, 上方的 ```0.5D``` 则是 **检测实体时获取周围实体的范围**
 
-具体内容可看到**[具体代码](https://github.com/602723113/ParticleLib/blob/master/src/top/zoyn/particlelib/pobject/Ray.java#L62)**
+具体内容可看到**[具体代码](https://github.com/602723113/ParticleLib/blob/master/src/main/java/top/zoyn/particlelib/pobject/Ray.java)**
 
 ![Ray.png](https://i.loli.net/2021/04/09/UNTKhRG6t48DxB5.png)
