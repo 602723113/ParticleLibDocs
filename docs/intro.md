@@ -1,9 +1,9 @@
 ---
 id: intro
-title: Intro
+title: 前言
 sidebar_position: 1
 tags:
-- Getting started
+- 前言
 ---
 Welcome to the ParticleLib wiki!
 
