@@ -1,6 +1,6 @@
 {
   "label": "基础内容",
-  "position": 2,
+  "position": 3,
   "link": {
     "type": "generated-index",
     "description": "以下会从点、线、面的方式介绍 ParticleLib 所包含的基础粒子特效"
