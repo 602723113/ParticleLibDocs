@@ -1,0 +1,36 @@
+---
+sidebar_position: 3
+title: 圆弧
+tags:
+- 基础内容
+---
+# 圆弧
+
+:::tip 提示
+该粒子特效已实现 Playable 接口, 支持按 period/tick 进行播放
+可以调用以下三个方法
+- play()
+- alwaysPlay()
+- alwaysPlayAsync()
+:::
+
+支持设置以下参数
+ - startAngle 弧开始的角度
+ - angle 弧所占的角度
+ - radius  弧所在的圆的半径
+ - step 每个粒子的间隔(也即步长)
+
+startAngle 默认为从0°开始
+
+```java
+Player player = ...;
+Arc arc = new Arc(player.getLocation())
+    .setAngle(180D) // 设置弧的角度
+    .setRadius(1.5) // 设置弧距离原点的距离
+    .setStep(2); // 设置弧上的每个粒子点的间隔
+arc.show();
+
+// 当然你不想使用上面的链式来做也可以使用下面的构造器之间构造
+// Arc arc = new Arc(player.getLocation(), 180D, 1.5, 2);
+```
+![Arc.png](https://i.loli.net/2020/11/02/NuFptKA6UskdJPf.png)

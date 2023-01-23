@@ -1,0 +1,50 @@
+---
+sidebar_position: 2
+title: 射线
+tags:
+- 基础内容
+---
+# 射线
+
+:::tip 提示
+该粒子特效已实现 Playable 接口, 支持按 period/tick 进行播放
+可以调用以下三个方法
+- play()
+- alwaysPlay()
+- alwaysPlayAsync()
+:::
+
+射线最初的设计为, 用**给定的原点与方向**即可构筑出一条射线, 而现可以使用射线捕获所击中的实体
+
+若只需要显示射线可以使用下方的代码
+```java
+Location launchLocation = player.getEyeLocation().add(player.getLocation().getDirection().multiply(1.2));
+Ray ray = new Ray(launchLocation, player.getLocation().getDirection(), 10, 0.02);
+ray.show();
+```
+
+若需要给射线所击中的实体进行处理，可以对其增加StopType与处理器
+```java
+Player player = ...;
+Location launchLocation = player.getEyeLocation().add(player.getLocation().getDirection().multiply(1.2));
+Ray ray = new Ray(launchLocation, player.getLocation().getDirection(), 10, 0.02);
+ray.setStopType(Ray.RayStopType.HIT_ENTITY)
+        .setHitEntityConsumer(entity -> {
+            entity.setCustomName("§a芜湖!");
+            entity.setCustomNameVisible(true);
+        })
+        .setEntityFilter(entity -> entity.getName().equalsIgnoreCase(player.getName()));
+ray.show();
+
+// 当然你不想使用上面的链式来做也可以使用下面的构造器直接构造
+Ray ray = new Ray(launchLocation, player.getLocation().getDirection(), 10, 0.02, 0.5D, Ray.RayStopType.HIT_ENTITY, entity -> {
+    entity.setCustomName("§a芜湖!");
+    entity.setCustomNameVisible(true);
+}, entity -> entity.getName().equalsIgnoreCase(player.getName()));
+```
+
+其中, 上方的 ```0.5D``` 则是 **检测实体时获取周围实体的范围**
+
+具体内容可看到**[具体代码](https://github.com/602723113/ParticleLib/blob/master/src/top/zoyn/particlelib/pobject/Ray.java#L62)**
+
+![Ray.png](https://i.loli.net/2021/04/09/UNTKhRG6t48DxB5.png)

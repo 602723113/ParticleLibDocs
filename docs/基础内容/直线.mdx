@@ -1,0 +1,35 @@
+---
+sidebar_position: 1
+title: 直线
+tags:
+- 基础内容
+---
+# 直线
+
+:::tip 提示
+该粒子特效已实现 Playable 接口, 支持按 period/tick 进行播放
+可以调用以下三个方法
+- play()
+- alwaysPlay()
+- alwaysPlayAsync()
+:::
+
+通过给定**两个** Location , ParticleLib 会自动帮你做好画线的操作
+
+```java
+Player player = ...;
+Location loc1 = player.getLocation();
+Location loc2 = player.getEyeLocation();
+Line line = new Line(loc1, loc2);
+line.show();
+// 如果你还想使 line 一直显示, 你可以调用
+// line.alwaysShowAsync();
+```
+![Line.png](https://i.loli.net/2020/11/02/C6SvR1ilBcjwANo.png)
+
+:::tip 提示
+如果你觉得 粒子之间的间隔较小, 造成粒子数量比较多, 可以适量增大 step(步进值)
+
+**默认的 step 值为 0.1**
+```line.setStep(0.5)```
+:::
