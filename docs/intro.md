@@ -1,47 +1,23 @@
 ---
 sidebar_position: 1
 ---
+Welcome to the ParticleLib wiki!
 
-# Tutorial Intro
+这是 Zoyn 在没事的时候写一写粒子的相关类库 —— 2020年
 
-Let's discover **Docusaurus in less than 5 minutes**.
+# 前言
+ParticleLib 是一个基于 BukkitAPI 编写的**粒子特效**程序库，只需要简单的几步即可生成出你想要的粒子轨迹
 
-## Getting Started
+若需要兼容其他服务端, 可移步至 [TabooLib](https://github.com/TabooLib/taboolib) 的 [module-effect](https://github.com/TabooLib/taboolib/tree/master/module/module-effect) 两者都是 我(602723113/Zoyn/莫老) 所编写的内容, 但 TabooLib 更新会慢于 ParticleLib
 
-Get started by **creating a new site**.
+# 开始使用
+- [安装 与 API导入]()
+- [创建你的第一个粒子特效：圆]()
+- [如何做到持续的显示]()
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+# 粒子特效对象
+在 ParticleLib 当中所有的特效都是通过 new 直接构造, 具体构造方法读者可以自行至源码处查阅, 注释已经写得比较清晰
 
-### What you'll need
+所有的特效都是基于 [ParticleObject](https://github.com/602723113/ParticleLib/blob/master/src/main/java/top/zoyn/particlelib/pobject/ParticleObject.java)  这个**抽象类**进行的构造
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+因此 ParticleObject 是所有特效的基础, 且 ParticleObject 支持直接添加 Matrix 矩阵的方式直接对所要生成的粒子进行 变换(Transformation) 的操作
