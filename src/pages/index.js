@@ -18,7 +18,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            开始使用⏱️
+            开始使用
           </Link>
         </div>
       </div>
@@ -30,8 +30,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`ParticleLib Doc`}
+      description="ParticleLib">
       <HomepageHeader />
       <main>
         <HomepageFeatures />
