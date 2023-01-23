@@ -1,0 +1,64 @@
+---
+sidebar_position: 3
+title: 投影器
+tags:
+- 进阶内容
+---
+# 关于投影器
+投影器是将你任意给定的向量, 作为坐标系的 Y 轴而建立起新的坐标系的一套工具
+
+例如在以前我们想通过让圆竖起来, 需要通过建立向量然后旋转获得, 但通过投影器我们可以只需要掌握在平面画圆的算法即可实现
+```java
+Vector vector = player.getLocation().getDirection();
+Location location = player.getLocation();
+World world = location.getWorld();
+BiFunction<Double, Double, Location> method = TwoDProjector.create2DProjector(location, vector);
+Bukkit.getScheduler().runTaskTimer(this, () -> {
+    for (int i = 0; i < 360; i++) {
+        double rad = Math.toRadians(i);
+        double x = Math.cos(rad);
+        double z = Math.sin(rad);
+        // 通过投影器开始转换坐标
+        Location loc = method.apply(x, z);
+        world.spawnParticle(Particle.VILLAGER_HAPPY, loc, 1, 0, 0, 0, 0);
+    }
+}, 0L, 1L);
+```
+具体效果：
+![2dprojector.png](https://i.loli.net/2021/06/14/klSxP49OdJqh2is.png)
+
+请注意上方的代码, 我们从头到尾都没有涉及到关于 MC 当中 Y轴 的变化, 因为变化已经由投影器做了转换
+
+:::tip 提示
+投影器算法由 @Bryan33 所提供
+:::
+# 如何使用
+
+投影器目前有两种，TwoDProjector和ThreeDProjector
+
+TwoDProjector 只会投影2D的图像, 即如果你原本要投影一个3D的图形, 那么则只会投射一个2D的平面, 类似**二向箔**
+
+ThreeDProjector则是会投影出3D的图形出来, 即你计算出来的 xyz 三轴的数值都会存在于新的法向量上
+
+具体使用方法可以翻阅代码或使用下面的例子
+# 发射螺旋!
+```java
+Vector vector = player.getLocation().getDirection();
+Location location = player.getLocation();
+World world = location.getWorld();
+ThreeDProjector projector = new ThreeDProjector(location, vector);
+Bukkit.getScheduler().runTaskTimer(this, () -> {
+    double y = 0;
+    for (int i = 0; i < 8 * 360; i += 20) {
+        double rad = Math.toRadians(i);
+        double x = Math.cos(rad);
+        y += 0.1;
+        double z = Math.sin(rad);
+        // 通过投影器开始转换坐标
+        Location loc = projector.apply(x, y, z);
+        world.spawnParticle(Particle.VILLAGER_HAPPY, loc, 1, 0, 0, 0, 0);
+    }
+}, 0L, 10L);
+```
+具体效果：
+![3dprojector.png](https://i.loli.net/2021/06/14/yYg2AedTUKZVpRB.png)

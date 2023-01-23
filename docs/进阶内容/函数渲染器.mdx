@@ -1,0 +1,43 @@
+---
+sidebar_position: 4
+title: 函数渲染器
+tags:
+- 进阶内容
+---
+# 函数渲染器
+
+函数渲染器即为开发者通过给定一个函数与相关参数, EquationRenderer 则会把函数图像给描绘出来
+
+:::tip 提示
+相关参数包括
+- 参数的步进
+- 参数的最大最小值
+- 等
+:::
+
+## 普通方程渲染器
+### 一个抛物线
+基于 %y = x^2% 可得抛物线
+```java
+GeneralEquationRenderer renderer = new GeneralEquationRenderer(player.getLocation(), x -> {
+    return Math.pow(x, 2);
+});
+renderer.alwaysShowAsync();
+```
+
+## 参数方程渲染器
+```java
+ParametricEquationRenderer renderer = new ParametricEquationRenderer(player.getLocation(), t -> 2 * Math.pow(Math.cos(t), 3), t -> 2 * Math.pow(Math.sin(t), 3));
+renderer.alwaysShowAsync();
+ParametricEquationRenderer renderer = new ParametricEquationRenderer(player.getLocation(), Math::cos, Math::sin);
+renderer.setDt(30);
+renderer.alwaysShowAsync();
+```
+
+## 极坐标方程渲染器
+```java
+PolarEquationRenderer renderer1 = new PolarEquationRenderer(player.getLocation(), theta -> {
+    return 1.5 * Math.sin(2 * theta);
+});
+renderer1.alwaysShowAsync();
+```

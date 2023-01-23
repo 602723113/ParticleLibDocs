@@ -1,0 +1,60 @@
+---
+sidebar_position: 1
+title: 贝塞尔曲线
+tags:
+- 进阶内容
+---
+# 贝塞尔曲线
+
+贝塞尔曲线是一个可以只用 3个点及以上, 就可以描绘出一段平滑的工具
+
+贝塞尔曲线由线段与节点组成，节点是可拖动的支点，线段像可伸缩的皮筋，我们在绘图工具上看到的钢笔工具就是来做这种矢量曲线的。
+
+:::tip 提示
+贝塞尔曲线可以用来制作跟踪弹, 或抛物线等的粒子特效
+:::
+
+## 二阶贝塞尔曲线
+
+提供 3 个点, 即可生成一条较为平滑的曲线
+
+```java
+Location p0 = player.getLocation();
+Location p1 = player.getEyeLocation();
+Location p2 = player.getLocation().add(2, 0, 0);
+TwoRankBezierCurve twoRank = new TwoRankBezierCurve(p0, p1, p2);
+twoRank.alwaysShowAsync();
+```
+![TwoRankBezier.png](https://i.loli.net/2020/11/02/gwXroM3PTG1WK5p.png)
+
+## 三阶贝塞尔曲线
+
+提供 4 个点, 即生成一条较为平滑的曲线
+
+```java
+Location p0 = player.getLocation();
+Location p1 = player.getLocation().add(0, 3, 0);
+Location p2 = player.getLocation().add(3, 0, 0);
+Location p3 = p2.clone().add(2, 5, 0);
+ThreeRankBezierCurve threeRank = new ThreeRankBezierCurve(p0, p1, p2, p3);
+threeRank.alwaysShowAsync();
+```
+![ThreeRankBezier.png](https://i.loli.net/2020/11/02/d5gBwLJzlsPyAe6.png)
+
+## N阶贝塞尔曲线
+
+提供 N+1 个点, 即生成一条较为平滑的曲线
+```java
+NRankBezierCurve nRankBezierCurve = new NRankBezierCurve(
+        origin.clone(),
+        origin.clone().add(0, 3, 0),
+        origin.clone().add(3, 0, 0),
+        origin.clone().add(5, 5, 0)
+);
+nRankBezierCurve.alwaysShowAsync();
+```
+![ThreeRankBezier.png](https://i.loli.net/2020/11/02/d5gBwLJzlsPyAe6.png)
+
+下面这张图是随机数拟合出来的, 并不是上面的代码出来的
+
+![F2R2_JN3XI@~_1HJTWM4BVN.png](https://i.loli.net/2021/10/17/lFMhG2UxQPWquXR.png)
