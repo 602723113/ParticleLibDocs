@@ -1,0 +1,30 @@
+---
+sidebar_position: 12
+title: 爱心 Heart
+tags:
+  - 基础内容
+---
+:::tip 提示
+该粒子特效已实现 Playable 接口, 支持按 period/tick 进行播放 可以调用以下三个方法
+
+- play() 若特效类已经实现 Playable 接口, 则会出现该方法
+- alwaysPlay() 可以使得当前的特效一直进行步进播放, 只不过 ParticleLib 会占用主线程来执行计算
+- alwaysPlayAsync() 跟 alwaysPlay 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
+
+爱心的算法将会在未来进行优化, 将会尝试一个更加适合实际环境的算法
+:::
+
+Heart 代表一个心
+
+Heart 支持设置**长宽的缩放比率**
+
+```java
+Heart heart = new Heart(player.getLocation());
+heart.setXScaleRate(1.5D);
+heart.setYScaleRate(1.5D);
+heart.setParticle(Particle.FLAME);
+heart.setStep(0.05D);
+heart.alwaysShowAsync();
+```
+
+![heart](./img/heart.png)
