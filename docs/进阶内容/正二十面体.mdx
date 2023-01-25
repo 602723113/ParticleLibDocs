@@ -1,0 +1,23 @@
+---
+sidebar_position: 8
+title: 正二十面体 Icosahedron
+tags:
+- 进阶内容
+- 工具类
+---
+
+:::danger 危险!
+算法来源未知
+
+以下的代码请务必只在测试环境下运行
+:::
+
+```java
+Icosahedron icosahedron = new Icosahedron();
+icosahedron.drawIcosahedron(3, 5);
+icosahedron.getTriangles().forEach(triangle -> {
+    player.spawnParticle(Particle.FIREWORKS_SPARK, origin.clone().add(triangle.point1), 1, 0, 0, 0, 0);
+    player.spawnParticle(Particle.FIREWORKS_SPARK, origin.clone().add(triangle.point2), 1, 0, 0, 0, 0);
+    player.spawnParticle(Particle.FIREWORKS_SPARK, origin.clone().add(triangle.point3), 1, 0, 0, 0, 0);
+});
+```
