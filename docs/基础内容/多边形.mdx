@@ -1,0 +1,34 @@
+---
+sidebar_position: 7
+title: 多边形
+tags:
+- 基础内容
+---
+Polygon 类表示一个正多边形, 它可以是 正三角形, 正四边形, 正五边形 等等
+
+因此, 生成时需要首先填入多边形的边数 side 再填入生成坐标
+
+生成方式可见下方代码
+
+```java
+Polygon polygon = new Polygon(3, player.getLocation());
+polygon.setParticle(Particle.FLAME);
+polygon.setStep(0.5);
+polygon.alwaysShowAsync();
+```
+![Polygon.png](https://i.loli.net/2021/04/09/O7Pkj3m6IvEMeuF.png)
+
+:::tip 提示
+如果你想中途更改多边形的边数也可以直接调用下方的方法
+
+```java
+polygon.setSide(4);
+```
+:::
+![Polygon2.png](https://i.loli.net/2021/04/09/MlFB9GnJKa31jXL.png)
+
+:::tip 提示
+利用 Polygon 和 Circle 可以制作一个简单的六芒星法阵
+
+
+:::

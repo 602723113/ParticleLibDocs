@@ -1,0 +1,19 @@
+---
+sidebar_position: 8
+title: 星形线
+tags:
+- 基础内容
+---
+Astroid 是我觉得比较好看的一个特效, 原理上是利用 [星形线](https://baike.baidu.com/item/星形线) 的参数方程进行生成
+
+```java
+Astroid astroid = new Astroid(player.getLocation());
+astroid.setParticle(Particle.FIREWORKS_SPARK);
+astroid.show();
+
+// 默认的半径长为1, 可以通过调用下面的方法或使用构造器来更改半径长度
+Astroid astroid = new Astroid(3, player.getLocation());
+// 或
+astroid.setRadius(3D);
+```
+![Astroid.png](https://i.loli.net/2021/04/09/mG7BWILirg1UTsD.png)

@@ -1,0 +1,36 @@
+---
+sidebar_position: 5
+title: 圆
+tags:
+- 基础内容
+---
+:::tip 提示
+该粒子特效已实现 Playable 接口, 支持按 period/tick 进行播放 可以调用以下三个方法
+
+- play() 若特效类已经实现 Playable 接口, 则会出现该方法
+- alwaysPlay() 可以使得当前的特效一直进行步进播放, 只不过 ParticleLib 会占用主线程来执行计算
+- alwaysPlayAsync() 跟 alwaysPlay 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
+:::
+
+Circle 在设计上直接继承了 Arc[圆弧](./基础内容/圆弧.mdx) 类, 因此圆可以直接设置 Arc 的方法
+
+如果在一开始你只指定了圆的圆点, 那 ParticleLib 就会从全部默认的参数来进行显示
+
+默认参数为: 半径为 1, 粒子点间隔为 1
+
+```java
+Player player = ...;
+Circle circle = new Circle(player.getLocation());
+circle.alwaysShowAsync();
+
+// 当然你也可以和下面一样的方式来设置参数, 或者直接在构造器里直接指定
+// circle.setRadius(5D)
+//       .setOrigin(player.getLocation().add(1, 0, 0));
+```
+![Circle.png](https://i.loli.net/2020/11/02/itl7pQ2hMNuLVTI.png)
+
+:::tip 提示
+若想让 Circle 斜向转动, 则可以添加一个绕 Z 轴旋转的矩阵, 即
+
+```circle.addMatrix(Matrixs.rotateAroundZAxis(旋转角度))```
+:::

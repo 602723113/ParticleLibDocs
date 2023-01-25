@@ -4,28 +4,41 @@ title: 粒子特效对象 ParticleObject
 tags:
 - 基础内容
 ---
-基本上所有的**特效类**都已经继承了 ParticleObject 这个类
+ParticleObject 是**所有的粒子特效类**的基础, 主要负责控制粒子生成的参数
 
-因此 **该类主要控制粒子的生成** 而非计算
+ParticleObject 支持您设置以下内容
+- setParticle
+> 设置粒子, 默认为 VILLAGER_HAPPY
+- setCount
+> 设置每一个点的粒子的数量, 默认为1
+- setOffsetX
+> 设置粒子生成时X轴的偏移范围, 默认为0
+- setOffsetY
+> 设置粒子生成时Y轴的偏移范围, 默认为0
+- setOffsetZ
+> 设置粒子生成时Z轴的偏移范围, 默认为0
+- setExtra
+> 设置粒子的 Extra 数据 **(通常是速度)** , 默认为 0
+- setData
+> 设置特殊粒子所需要的额外数据 (例如 ITEM_CRACK 需要一个```ItemStack```对象), 默认为 null
+- setColor
+> 设置粒子的颜色, 支持 RGB
 
-ParticleObject 可以设置以下内容
-- setParticle 设置粒子, 默认为 VILLAGER_HAPPY
-- setCount 设置每一个点的粒子的数量, 默认为1
-- setOffsetX 设置粒子生成时X轴的偏移范围, 默认为0
-- setOffsetY 设置粒子生成时Y轴的偏移范围, 默认为0
-- setOffsetZ 设置粒子生成时Z轴的偏移范围, 默认为0
-- setExtra 设置粒子的 Extra 数据 **(通常是速度)** , 默认为 0
-- setData 设置特殊粒子所需要的额外数据 (例如 ITEM_CRACK 需要一个```ItemStack```对象), 默认为 null
-- setColor 设置粒子的颜色
 :::danger 注意
 在 setColor 了之后 调整 particle, count, offset, extra, data 参数都无法起作用
 因为 **粒子颜色** 是利用了 REDSTONE 可以设置 RGB 的特性, 因此会自动忽略已经设置的参数
 :::
-- attachEntity 将特效与某一实体进行绑定, 生成粒子时会使用该实体的 **脚下坐标** 作为 origin
-- setIncrementX 设置生成时在 X 轴的增量, 默认为0
-- setIncrementY 设置生成时在 Y 轴的增量, 默认为0
-- setIncrementZ 设置生成时在 Z 轴的增量, 默认为0
-- addMatrix 粒子生成时将会利用矩阵进行位置变换
+
+- attachEntity
+> 将特效与某一实体进行绑定, 生成粒子时会使用该实体的 **脚下坐标** 作为 origin
+- setIncrementX
+> 设置生成时在 X 轴的增量, 默认为0
+- setIncrementY
+> 设置生成时在 Y 轴的增量, 默认为0
+- setIncrementZ
+> 设置生成时在 Z 轴的增量, 默认为0
+- addMatrix
+> 粒子生成时将会利用矩阵进行位置变换
 
 :::tip 提示
 在 ParticleLib 中, 所有的粒子特效都会使用 ParticleObject 的 spawnParticle 方法进行粒子生成
@@ -33,20 +46,20 @@ ParticleObject 可以设置以下内容
 这样会利用上上面所设定的额外的参数
 :::
 
-- ParticleObject#alwaysShow
-可以使得当前的特效一直进行显示, 只不过 ParticleLib 会占用主线程来执行计算
+- alwaysShow
+> 可以使得当前的特效一直进行显示, 只不过 ParticleLib 会占用主线程来执行计算
 
-- ParticleObject#alwaysShowAsync
-跟 alwaysShow 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
+- alwaysShowAsync
+> 跟 alwaysShow 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
 
-- ParticleObject#alwaysPlay
-若特效类***已经实现 Playable 接口***，则可以使得当前的特效一直进行***步进播放***, 只不过 ParticleLib 会占用主线程来执行计算
+- alwaysPlay
+> 若特效类***已经实现 Playable 接口***，则可以使得当前的特效一直进行***步进播放***, 只不过 ParticleLib 会占用主线程来执行计算
 
-- ParticleObject#alwaysPlayAsync
-跟 alwaysPlay 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
+- alwaysPlayAsync
+> 跟 alwaysPlay 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
 
-- ParticleObject#turnOffTask
-目的是关闭当前一直在显示的特效
+- turnOffTask
+> 目的是关闭当前一直在显示的特效
 
 - ShowType
-如果你想知道当前显示特效是 Sync 还是 Async , 你可以使用 getShowType 的方法来获取
+> 如果你想知道当前显示特效是 Sync 还是 Async , 你可以使用 getShowType 的方法来获取

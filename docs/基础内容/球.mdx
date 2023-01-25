@@ -1,0 +1,32 @@
+---
+sidebar_position: 6
+title: 球
+tags:
+- 基础内容
+---
+:::tip 提示
+该粒子特效已实现 Playable 接口, 支持按 period/tick 进行播放 可以调用以下三个方法
+
+- play() 若特效类已经实现 Playable 接口, 则会出现该方法
+- alwaysPlay() 可以使得当前的特效一直进行步进播放, 只不过 ParticleLib 会占用主线程来执行计算
+- alwaysPlayAsync() 跟 alwaysPlay 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
+:::
+
+ParticleLib 当中的 Sphere 类利用斐波那契算法 进行生成, 因此是一个较为致密的球
+
+而类似经纬的方式来生成, 会导致两极的粒子量较为密集
+
+算法可见: https://stackoverflow.com/questions/9600801/evenly-distributing-n-points-on-a-sphere/26127012#26127012
+
+```java
+Sphere sphere = new Sphere(player.getLocation());
+sphere.alwaysShowAsync();
+
+// 你可以通过下面的几种方式来设置参数
+
+sphere.setRadius(5) // 设置球的半径
+      .setOrigin(player.getLocation()) // 设置球的原点
+      .setSample(100); // 设置球的样本点个数
+```
+
+![Sphere.png](https://i.loli.net/2020/11/02/uaWmdFpIcvogl4O.png)
