@@ -1,0 +1,28 @@
+---
+sidebar_position: 15
+title: 五角星 Star
+tags:
+  - 基础内容
+---
+:::tip 提示
+该粒子特效已实现 Playable 接口, 支持按 period/tick 进行播放 可以调用以下三个方法
+
+- play() 若特效类已经实现 Playable 接口, 则会出现该方法
+- alwaysPlay() 可以使得当前的特效一直进行步进播放, 只不过 ParticleLib 会占用主线程来执行计算
+- alwaysPlayAsync() 跟 alwaysPlay 一样, 只不过 ParticleLib 会使用异步的方式来执行计算并显示特效
+:::
+
+Star 代表一个五角星特效, 不支持设定相关参数, 算法基于星形线叠加而成
+
+:::danger 注意
+在 1.4 版本后, Star 的算法得到了优化, 以五角星的外接圆的中心作为生成原点坐标
+:::
+
+```java
+Star star = new Star(player.getLocation(), 3, 0.5);
+star.setParticle(Particle.FIREWORKS_SPARK);
+star.setPeriod(1);
+star.alwaysPlayAsync();
+```
+
+![五角星](./img/star.gif)
