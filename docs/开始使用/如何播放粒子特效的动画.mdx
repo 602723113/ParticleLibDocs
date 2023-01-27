@@ -4,11 +4,36 @@ title: 如何播放粒子特效的动画
 tags:
 - 开始使用
 ---
-# 如何播放粒子特效的动画
-
-在前面的教程当中我们学会了如何建立粒子特效, 并且如何让粒子特效持续地显示在地图上
-
-本章主要讲述如何将粒子特效进行播放
+在前面的教程当中我们学会了如何建立粒子特效, 并且如何让粒子特效持续地显示在地图上, 本章主要讲述如何将粒子特效进行播放
 
 在 ParticleLib 当中有一个接口 Playable, 当粒子特效实现该接口内的 ```play``` 和 ```playNextPoint``` 时则说明该粒子特效支持动画播放
 
+play 方法默认使用 ```runTaskTimer``` 并且以 ```setPeriod``` 参数作为每次播放的间隔 单位tick
+
+- play 方法只会播放一次完整的特效, 特效播放完后会自动关闭
+- playNextPoint 则表示每 period 后所播放的 **下一个点的粒子**
+
+#### alwaysPlay
+该方法存在于 ParticleObject 当中, 意思是每 period 则运行一次 playNextPoint 方法
+
+该方法将会运行在 主线程 上
+
+#### alwaysPlayAsync
+同上, 异步播放
+
+:::tip 提示
+当你觉得 alwaysPlay 和 alwaysPlayAsync 两个方法播放得太慢时你可以这样做
+```java
+new BukkitRunnable() {
+    @Override
+    public void run() {
+        for (int i = 0; i < 运行次数; i++) {
+            playable.playNextPoint();
+        }
+    }
+}.runTaskTimerAsynchronously(你的主类, delay延迟, period运行间隔);
+```
+在 Runnable 当中写一个 for 循环 并且填写**运行次数**, 当运行次数为 5 时则表示
+
+```每 period 个 tick 播放 5 个粒子```
+:::

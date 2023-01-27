@@ -4,26 +4,46 @@ title: 函数渲染器 EquationRenderer
 tags:
 - 进阶内容
 ---
-# 函数渲染器
-
 函数渲染器即为开发者通过给定一个函数与相关参数, EquationRenderer 则会把函数图像给描绘出来
 
 :::tip 提示
-相关参数包括
+函数渲染器支持设定的相关参数包括
 - 参数的步进
 - 参数的最大最小值
 - 等
 :::
 
-## 普通方程渲染器
-### 一个抛物线
-基于 $y = x^2$ 可得抛物线
+# 普通函数渲染器
+一般函数渲染器是基于 ```y = f(x)``` 的函数进行的渲染
+
+例如简单的 ```y = x^2``` 则为抛物线可见如下的实现
+
+
 ```java
 GeneralEquationRenderer renderer = new GeneralEquationRenderer(player.getLocation(), x -> {
     return Math.pow(x, 2);
 });
 renderer.alwaysShowAsync();
 ```
+实际效果为:
+![普通方程渲染器5](./img/普通方程渲染器5.png)
+
+由于普通函数渲染器默认参数为
+- minX: -5
+- maxX: 5
+- dx: 0.1
+
+因此在上图看出来的函数图像比较的高且密集, 因此我们可以修改一下参数可得下面的结果
+
+```java
+GeneralEquationRenderer renderer = new GeneralEquationRenderer(player.getLocation(), x -> Math.pow(x, 2));
+        renderer.setMinX(-3)
+                .setMaxX(3)
+                .setDx(0.3);
+        renderer.alwaysShowAsync();
+```
+![普通方程渲染器3](./img/普通方程渲染器3.png)
+
 
 ## 参数方程渲染器
 ```java

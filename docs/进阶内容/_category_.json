@@ -2,6 +2,7 @@
   "label": "进阶内容",
   "position": 4,
   "link": {
-    "type": "generated-index"
+    "type": "generated-index",
+    "description": "进阶内容主要介绍 ParticleLib 所提供的一些比较好用的数学工具"
   }
 }
