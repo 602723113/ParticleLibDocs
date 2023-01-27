@@ -5,3 +5,64 @@ tags:
 - 进阶内容
 - 工具类
 ---
+ParticleLib 当中的矩阵写得比较难懂, 请务必先看看 [这个视频 来自3B1B](https://www.bilibili.com/video/BV1ns41167b9) 再来阅读本章内容
+
+在 ParticleLib 当中已经写好了一些矩阵预设, 他们大都存放在 ```Matrixs```
+
+:::tip 提示
+Matrix 类由于是以前写的, 我在写 Wiki 时已经忘记其结构了, 所以有什么不清楚的地方可以自行去参观 Matrix 类的注释和代码
+:::
+
+- ```Matrixs.zeros(int row, int column)``` 通过给定的行列数返回一个全零矩阵
+- ```Matrixs.ones(int row, int column)``` 通过给定的行列数返回一个全 1 矩阵
+- ```Matrixs.eyes(int row, int column)``` 通过给定的行列数返回一个单位矩阵
+- ```Matrixs.rotate2D(double theta)``` 通过给定的角度返回一个平面旋转矩阵
+
+:::danger 注意
+请注意 rotate2D 方法返回的是一个 2行2列 的旋转矩阵, 无法再叠加至 3行3列 的旋转矩阵
+:::
+
+- ```Matrixs.rotateAroundXAxis(double theta)``` 通过给定的角度返回一个关于 X 轴的旋转矩阵
+- ```Matrixs.rotateAroundYAxis(double theta)``` 通过给定的角度返回一个关于 Y 轴的旋转矩阵
+- ```Matrixs.rotateAroundZAxis(double theta)``` 通过给定的角度返回一个关于 Z 轴的旋转矩阵
+
+:::danger 注意
+请注意 以上 3 种方法返回的是一个 3行3列 的旋转矩阵, 无法再降阶处理
+:::
+
+- ```Matrixs.scale(int row, int column, double value)``` 建立一个放大或缩小的矩阵
+
+**请注意, 在 ParticleLib 当中只有 2行2列 与 3行3列 的矩阵才有意义**
+
+# 一些例子
+如果我们需要将 Arc 一直显示在玩家的面前我们可以做这样的操作
+```java
+Arc arc = new Arc(origin, 0, 180D, 2)
+        .setStep(5D);
+arc.addMatrix(Matrixs.rotateAroundYAxis(-player.getLocation().getYaw()))
+        .alwaysShowAsync();
+```
+
+若我们觉得 莲花特效 默认太大了我们可以利用矩阵进行缩小, 即使它没有设置 radius 参数
+```java
+Lotus lotus = new Lotus(player.getLocation());
+lotus.addMatrix(Matrixs.scale(2, 2, 0.5))
+        .setColor(Color.WHITE)
+        .alwaysShowAsync();
+```
+
+制作类似剑气的效果, 这个方法需要旋转 Z 轴后再旋转 Y 轴, 因此可以这样做
+```java
+Random random = new Random();
+Arc arc = new Arc(origin, 0, 180D, 2)
+        .setStep(5D);
+// 旋转角度
+double rot = random.nextBoolean() ? -random.nextDouble() : random.nextDouble();
+
+arc.addMatrix(Matrixs.rotateAroundZAxis(90 * rot))
+        .addMatrix(Matrixs.rotateAroundYAxis(-player.getLocation().getYaw()))
+        .setColor(Color.WHITE);
+arc.alwaysShowAsync();
+```
+上方的代码可以更改成 随机选取在 30~60 度之中 这样效果就会更像剑气
+
