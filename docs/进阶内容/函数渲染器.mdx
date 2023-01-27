@@ -28,7 +28,6 @@ tags:
 
 例如简单的 ```y = x^2``` 则为抛物线可见如下的实现
 
-
 ```java
 GeneralEquationRenderer renderer = new GeneralEquationRenderer(player.getLocation(), x -> {
     return Math.pow(x, 2);
@@ -65,6 +64,7 @@ x = f(t)
 y = g(t)
 z = h(t)
 ```
+默认 t 的取值范围为 ```[0, 360]``` dt 为 1
 
 以下例子都实现于XY平面当中
 
@@ -80,11 +80,17 @@ ParametricEquationRenderer renderer = new ParametricEquationRenderer(player.getL
 renderer.setDt(30);
 renderer.alwaysShowAsync();
 ```
-默认 t 的取值范围为 ```[0, 360]``` dt 为 1
 
 ![圆的参数方程](./img/圆的参数方程.png)
 
 ## 极坐标方程渲染器
+:::tip 提示
+极坐标支持设定的参数为
+
+- minTheta θ 的最小值, 默认为 0
+- maxTheta θ 的最大值, 默认为 360
+- dTheta θ 的该变量, 默认为 1
+:::
 
 以四叶玫瑰线为例 ```ρ=a*sin(2θ)``` 取 a 为 1.5 则有如下图像
 
@@ -94,11 +100,4 @@ PolarEquationRenderer renderer = new PolarEquationRenderer(player.getLocation(),
 });
 renderer.alwaysShowAsync();
 ```
-:::tip 提示
-极坐标支持设定的参数为
-
-- minTheta θ 的最小值, 默认为 0
-- maxTheta θ 的最大值, 默认为 360
-- dTheta θ 的该变量, 默认为 1
-:::
 ![四叶玫瑰线](./img/四叶玫瑰线.png)
