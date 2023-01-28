@@ -5,3 +5,67 @@ tags:
 - 进阶内容
 - 工具类
 ---
+向量工具类主要提供的是空间内向量的实用方法
+
+# createVector(Location start, Location end)
+通过两点建立一个向量
+
+- Location start 起点
+- Location end 终点
+
+# getLeftDirection(Location location)
+根据所给定的 Location 内的 yaw 和 pitch 计算出 朝向左的 向量
+
+- Location location 坐标点, 需包含 yaw 和 pitch
+
+# getRightDirection(Location location)
+根据所给定的 Location 内的 yaw 和 pitch 计算出 朝向右的 向量
+
+- Location location 坐标点, 需包含 yaw 和 pitch
+
+# getUpVector(double multiply)
+
+- double multiply 倍率
+
+:::tip 提示
+若只执行```getUpVector()``` 则只会得到一个单位为 1 的向上的向量
+:::
+
+# rotateAroundAxisX(Vector v, double angle)
+将给定的向量在 X 轴上**顺时针**旋转 angle 个角度
+
+- Vector v 待旋转的向量
+- double angle 旋转角度
+
+**该方法会直接改变 所填入的 v 对象的值**
+
+# rotateAroundAxisY(Vector v, double angle)
+将给定的向量在 Y 轴上**顺时针**旋转 angle 个角度
+
+- Vector v 待旋转的向量
+- double angle 旋转角度
+
+**该方法会直接改变 所填入的 v 对象的值**
+
+# rotateAroundAxisZ(Vector v, double angle)
+将给定的向量在 Z 轴上**顺时针**旋转 angle 个角度
+
+- Vector v 待旋转的向量
+- double angle 旋转角度
+
+**该方法会直接改变 所填入的 v 对象的值**
+
+:::tip 提示
+以上三个方法若是想逆时针旋转, 则只需要在旋转角度前添加一个负号即可
+:::
+
+# rotateVector(Vector v, float yawDegrees, float pitchDegrees)
+将一个非单位向量使用 yaw 和 pitch 来进行旋转
+
+- Vector v 待旋转的向量
+- float yawDegrees 左右旋转 yaw 个角度
+- float pitchDegrees 上下旋转 pitch 个角度
+
+:::danger 注意
+该方法在 1.13 以上版本中出现一些问题, 以后应该会进行修复
+:::
