@@ -1,7 +1,31 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 title: 六芒星法阵(使用Circle与Polygon)
 tags:
 - 实战
 - 实际案例
 ---
+六芒星其实就是一个圆加两个三角形即可
+
+```java
+Circle circle = new Circle(player.getLocation(), 2);
+circle.setPeriod(1)
+        .setColor(Color.BLACK);
+Polygon polygon = new Polygon(3, player.getLocation());
+// 放大
+polygon.addMatrix(Matrixs.scale(2, 2, 2))
+        .setColor(Color.BLACK);
+Polygon polygon1 = new Polygon(3, player.getLocation());
+// 对于平面2D图形, 使用 rotate2D 方法也可以
+polygon1.addMatrix(Matrixs.rotate2D(180))
+        // 放大
+        .addMatrix(Matrixs.scale(2, 2, 2))
+        .setColor(Color.BLACK);
+circle.alwaysShowAsync();
+polygon.alwaysShowAsync();
+polygon1.alwaysShowAsync();
+```
+
+实际运行效果:
+
+![六芒星](./img/六芒星.png)
