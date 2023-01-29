@@ -60,7 +60,7 @@ const config = {
         title: 'ParticleLib',
         logo: {
           alt: 'ParticleLib 的主页',
-          src: 'img/logo.svg',
+          src: 'img/logo.jpeg',
         },
         items: [
           {
