@@ -1,0 +1,46 @@
+---
+sidebar_position: 5
+title: 一个不断旋转的正方体(Matrix 用于特效旋转)
+tags:
+- 实战
+- 实际案例
+---
+这一段代码其实核心内容就是在于 Matrix 的使用, 在以前我们旋转点时往往会需要 VectorUtils 里的向量旋转方法
+
+而在 ParticleLib 当中 你可以使用 Matrix 直接代替 Vector 的旋转功能, 详情可见下方内容
+
+```java
+Cube cube = new Cube(player.getLocation().subtract(3, 3, 3), player.getLocation().add(3, 3, 3));
+cube.setColor(Color.WHITE)
+        .addMatrix(Matrixs.rotateAroundXAxis(45))
+        .addMatrix(Matrixs.rotateAroundZAxis(45))
+        .alwaysShowAsync();
+
+new BukkitRunnable() {
+    @Override
+    public void run() {
+        cube.addMatrix(Matrixs.rotateAroundYAxis(2));
+    }
+}.runTaskTimerAsynchronously(你的插件主类, 延迟delay, 运行周期period);
+```
+
+具体效果
+![Y轴旋转正方体](./img/Y轴旋转正方体.gif)
+
+这一节内容是想告诉大家 ```addMatrix``` 可以一直增加, 因为当你调用了 ```addMatrix``` 时, ParticleLib 则会帮你使用 Matrix 当中的 ```multiply``` 方法将两个矩阵进行相乘
+
+因此上方的代码你还可以增加 X Z 两轴的旋转
+
+```java
+new BukkitRunnable() {
+	@Override
+	public void run() {
+		cube.addMatrix(Matrixs.rotateAroundXAxis(2));
+        cube.addMatrix(Matrixs.rotateAroundYAxis(2));
+        cube.addMatrix(Matrixs.rotateAroundZAxis(2));
+	}
+}.runTaskTimerAsynchronously(你的插件主类, 延迟delay, 运行周期period);
+```
+
+此时的 Cube 的旋转将会是这样的情况
+![3轴旋转正方体](./img/3轴旋转正方体.gif)
