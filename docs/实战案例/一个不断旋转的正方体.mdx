@@ -24,8 +24,9 @@ new BukkitRunnable() {
 }.runTaskTimerAsynchronously(你的插件主类, 延迟delay, 运行周期period);
 ```
 
-具体效果
+:::info 具体效果
 ![Y轴旋转正方体](./img/Y轴旋转正方体.gif)
+:::
 
 这一节内容是想告诉大家 ```addMatrix``` 可以一直增加, 因为当你调用了 ```addMatrix``` 时, ParticleLib 则会帮你使用 Matrix 当中的 ```multiply``` 方法将两个矩阵进行相乘
 
@@ -43,4 +44,7 @@ new BukkitRunnable() {
 ```
 
 此时的 Cube 的旋转将会是这样的情况
+
+:::info 具体效果
 ![3轴旋转正方体](./img/3轴旋转正方体.gif)
+:::
