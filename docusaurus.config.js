@@ -69,7 +69,7 @@ const config = {
             position: 'left',
             label: '指南',
           },
-          {to: '/blog', label: '神识!', position: 'left'},
+          {to: '/blog', label: '神识', position: 'left'},
           {
             href: 'https://github.com/602723113/ParticleLib',
             label: 'GitHub',
