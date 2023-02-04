@@ -1,0 +1,60 @@
+---
+sidebar_position: 5
+title: 实现一个 Ray 版本的追踪弹
+tags:
+- 实战
+- 实际案例
+---
+这一段代码涉及两部分, 第一个部分就是粒子首先往上升进行抛射
+
+第二段便是粒子抛射结束后射向实体
+
+```java
+Random random = new Random();
+for (Entity entity : player.getNearbyEntities(10, 10, 10)) {
+    new BukkitRunnable() {
+        final Location temp = player.getEyeLocation().clone();
+        double step = 0;
+        // 初始化
+        boolean initial = false;
+        Location nowLocation;
+
+        @Override
+        public void run() {
+            if (!initial) {
+                // 指向玩家的四周
+                temp.setYaw(random.nextInt(360));
+                // 向量 pitch 0 ~ -90°随机
+                temp.setPitch(-90 * random.nextFloat());
+                initial = true;
+            }
+            if (step >= 5) {
+                // 抛射结束后开始制导
+                Vector direct = entity.getLocation().subtract(nowLocation).toVector();
+                // 使用自带的 Ray 射线
+                Ray ray = new Ray(nowLocation, direct, entity.getLocation().distance(nowLocation), 0.05);
+                ray.setStopType(Ray.RayStopType.HIT_ENTITY)
+                        .setEntityFilter(entity1 -> entity1.getName().equalsIgnoreCase(player.getName()))
+                        .setHitEntityConsumer(entity1 -> entity1.getLocation().getWorld().createExplosion(entity1.getLocation(), 1, true, false))
+                        .setParticle(Particle.FIREWORKS_SPARK);
+                // 执行
+                ray.play();
+                cancel();
+                return;
+            }
+            // 抛射部分
+            Vector v = temp.getDirection();
+            Vector vectorTemp = v.clone().multiply(step);
+            Location spawnLocation = temp.clone().add(vectorTemp);
+            spawnLocation.getWorld().spawnParticle(Particle.FIREWORKS_SPARK, spawnLocation, 1, 0, 0, 0, 0);
+            nowLocation = spawnLocation.clone();
+            // 抛射结束后的终点
+            step += 0.5;
+        }
+    }.runTaskTimer(this, 0, 1);
+}
+```
+
+:::info 具体效果
+![Ray版本的追踪弹](./img/Ray版本的追踪弹.gif)
+:::
