@@ -6,13 +6,14 @@ tags:
 ---
 # 创建你的第一个粒子特效：圆
 
-
 ParticleLib 会将所有写好的粒子特效放入名为 pobject 的 [程序包](https://github.com/602723113/ParticleLib/tree/master/src/main/java/top/zoyn/particlelib/pobject) 当中。
 所有的特效都是基于 [ParticleObject](https://github.com/602723113/ParticleLib/blob/master/src/main/java/top/zoyn/particlelib/pobject/ParticleObject.java)  这个**抽象类**进行的构造
 
 因此 ParticleObject 是所有特效的基础, 且 ParticleObject 支持直接添加 Matrix 矩阵的方式直接对所要生成的粒子进行 变换(Transformation) 的操作
 
-在 ParticleLib 当中所有的特效都是通过 new 直接构造, 具体构造方法读者可以自行至源码处查阅, 注释已经写得比较清晰。例如见下面的代码
+在 ParticleLib 当中所有的特效都是通过 new 直接构造, 具体构造方法读者可以自行至源码处查阅, 注释已经写得比较清晰。**或点击左侧的内容进行查阅也行**
+
+例如见下面的代码
 
 ```java
 Player player = ...;
